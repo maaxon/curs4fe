@@ -20,7 +20,9 @@ export const theme = {
     bookmark: '#F9F9F9',
     bookmarkHover:'#FBD7B24D',
     overlay:'#00000080',
-    skeletonBackground:' #ededed'
+    skeletonBackground:' #ededed',
+    errorMessageBg: "#f8d7da",
+    errorMessageBorder: "#f5c2c7",
   },
   fonts: {
     main: 'Roboto, sans-serif',

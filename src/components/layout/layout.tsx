@@ -1,32 +1,21 @@
 import GlobalStyles from '@styles/globalStyles';
-import {theme} from '@styles/theme';
 import {Outlet} from 'react-router-dom';
-import {ThemeProvider} from 'styled-components';
-import ErrorBoundary from '@components/ErrorBoundary';
 import Footer from '@components/Footer';
 import Header from '@components/Header';
-import Container from './container.tsx';
-import {ContentWrapper, PageWrapper} from './layout.styles.ts';
-import {BookmarkProvider} from "@context/BookmarkContext/bookmarkContext.tsx";
+import { PageWrapper} from './layout.styles.ts';
+import {Suspense} from "react";
 
 const Layout = () => {
+    console.log('x2')
     return (
-        <ErrorBoundary>
-            <ThemeProvider theme={theme}>
-                <BookmarkProvider>
-                    <PageWrapper>
+                    <PageWrapper className="nav-on-header bg-alt">
                         <GlobalStyles/>
                         <Header/>
-                        <ContentWrapper>
-                            <Container>
-                                <Outlet/>
-                            </Container>
-                        </ContentWrapper>
+                        <Suspense fallback={<h1>Loading..</h1>}>
+                            <Outlet/>
+                        </Suspense>
                         <Footer/>
                     </PageWrapper>
-                </BookmarkProvider>
-            </ThemeProvider>
-        </ErrorBoundary>
     );
 };
 

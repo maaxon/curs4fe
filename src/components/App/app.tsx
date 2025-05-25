@@ -1,17 +1,30 @@
-import Layout from '@components/layout';
-import React, { Suspense } from 'react';
-import {Route, Routes} from 'react-router-dom';
-import {routes} from "@constants/routes.ts";
+import React, {useEffect} from 'react';
+import './style.css'
 
-
+import 'font-awesome/css/font-awesome.min.css';
+import {theme} from "@styles/theme.ts";
+import {ThemeProvider} from "styled-components";
+import ErrorBoundary from "@components/ErrorBoundary";
+import {RouterProvider} from "react-router-dom";
+import {router} from "@components/App/router/router.tsx";
+import {useAppDispatch, } from "@hooks/redux.ts";
+import {init} from "../../store/reducers/User/slice/User.ts";
+import {Toaster} from "sonner";
 const App: React.FC = () => {
+    const dispatch = useAppDispatch();
+
+    useEffect(() => {
+        dispatch(init());
+    }, []);
+
 
     return (
-        <Routes>
-            <Route path="/" element={<Layout/>}>
-                {routes.map((route)=><Route path={route.path} element={<Suspense><route.component/></Suspense>}/>)}
-            </Route>
-        </Routes>
+        <ErrorBoundary>
+            <ThemeProvider theme={theme}>
+                <RouterProvider router={router}/>
+                <Toaster position="bottom-right" theme="light" richColors={true}/>
+            </ThemeProvider>
+        </ErrorBoundary>
     );
 };
 
