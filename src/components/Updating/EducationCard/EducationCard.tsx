@@ -60,7 +60,7 @@ const UpdatingEducationCard: React.FC<EducationCardProps> = ({ id, data, idx }) 
     const removeCard = async () => {
         if (id) {
             try {
-                await fetch(`${process.env.BACK_URL}/education/${id}`, {
+                await fetch(`${import.meta.env.VITE_BACK_URL}/education/${id}`, {
                     method: "DELETE",
                 });
             } catch (error) {

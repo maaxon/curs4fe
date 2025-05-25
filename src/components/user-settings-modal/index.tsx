@@ -26,7 +26,7 @@ export const UserSettingsModal = () => {
         setError(null)
         try {
             if (!value || value.length < 3) throw new Error("Name should be at least 3 characters");
-            await axios.put(`${process.env.BACK_URL}/users/change-${name}/${user?.id}`, {
+            await axios.put(`${import.meta.env.VITE_BACK_URL}/users/change-${name}/${user?.id}`, {
                 [name]: value
             })
             setForm(prevState => ({...prevState, password: ''}))
@@ -43,7 +43,7 @@ export const UserSettingsModal = () => {
     const onDelete = async () => {
         setError(null)
         try {
-            await axios.delete(`${process.env.BACK_URL}/users/${user?.id}`)
+            await axios.delete(`${import.meta.env.VITE_BACK_URL}/users/${user?.id}`)
             dispatch(logout())
             navigate('/login')
             handleModalClose();

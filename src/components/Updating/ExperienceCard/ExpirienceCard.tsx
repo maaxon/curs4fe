@@ -49,7 +49,7 @@ const UpdatingExperienceCard: React.FC<ExperienceCardProps> = ({ id, data, idx }
     const removeCard = async () => {
         if (id) {
             try {
-                await fetch(`${process.env.BACK_URL}/experience/${id}`, {
+                await fetch(`${import.meta.env.VITE_BACK_URL}/experience/${id}`, {
                     method: "DELETE",
                 });
             } catch (error) {

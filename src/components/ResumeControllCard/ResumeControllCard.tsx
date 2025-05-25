@@ -21,7 +21,7 @@ const ResumeControlCard = ({id,title,location,salary,name,status, image}:ResumeC
     const dispatch = useAppDispatch();
 
     const onResumeDelete =  (id: number) => async () =>{
-        await axios.delete(`${process.env.BACK_URL}/resume/${id}`)
+        await axios.delete(`${import.meta.env.VITE_BACK_URL}/resume/${id}`)
         dispatch(fetchUserResumes(userId))
     }
 

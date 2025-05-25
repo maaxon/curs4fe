@@ -1,7 +1,7 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react';
 
 const baseQuery = fetchBaseQuery({
-    baseUrl: `${process.env.BACK_URL}`, // Ваш базовый URL
+    baseUrl: `${import.meta.env.VITE_BACK_URL}`, // Ваш базовый URL
 });
 
 const apiSlice = createApi({

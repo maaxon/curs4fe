@@ -52,7 +52,7 @@ const Favorites = () => {
 
             if (user) {
                 console.log(user.id)
-                await axios.post(`${process.env.BACK_URL}/resume`, {
+                await axios.post(`${import.meta.env.VITE_BACK_URL}/resume`, {
                     title: headline,
                     image: imageUrl,
                     description,

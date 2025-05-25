@@ -48,7 +48,7 @@ const UpdatingSkillCard: React.FC<SkillCardProps> = ({ id, data, idx }) => {
     const removeCard = async () => {
         if (id) {
             try {
-                await fetch(`${process.env.BACK_URL}/skill/${id}`, {
+                await fetch(`${import.meta.env.VITE_BACK_URL}/skill/${id}`, {
                     method: "DELETE",
                 });
             } catch (error) {

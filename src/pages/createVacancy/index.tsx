@@ -29,7 +29,7 @@ export const CreateVacancy = () => {
         setError(false)
         e.preventDefault();
         try {
-            await axios.post(`${process.env.BACK_URL}/vacancies`, {
+            await axios.post(`${import.meta.env.VITE_BACK_URL}/vacancies`, {
                 ...data,
                 user_id: user?.id
             })

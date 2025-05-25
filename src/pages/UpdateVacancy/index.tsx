@@ -30,7 +30,7 @@ export const UpdateVacancy = () => {
     const onSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
-            await axios.put(`${process.env.BACK_URL}/vacancies/${id}`, {
+            await axios.put(`${import.meta.env.VITE_BACK_URL}/vacancies/${id}`, {
                 ...vacancy
             })
             dispatch(apiSlice.util.invalidateTags(['GET_VACANCIES_BY_USER_ID']));

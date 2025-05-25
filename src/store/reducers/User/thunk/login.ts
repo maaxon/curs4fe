@@ -9,7 +9,7 @@ interface LoginData {
 
 export const loginUser = createAsyncThunk('users/login', async ({email, password, loggedByGoogle}: LoginData) => {
 
-    const response = await axios.post(`${process.env.BACK_URL}/users/login`, {
+    const response = await axios.post(`${import.meta.env.VITE_BACK_URL}/users/login`, {
         email,
         password,
     });

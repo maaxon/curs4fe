@@ -36,7 +36,7 @@ export const RegisterPage = () => {
         e.preventDefault();
         setError(null)
         try {
-            await axios.post(`${process.env.BACK_URL}/users/register`, {name, email, password, role})
+            await axios.post(`${import.meta.env.VITE_BACK_URL}/users/register`, {name, email, password, role})
             navigate('/login')
         } catch {
             setError(true)

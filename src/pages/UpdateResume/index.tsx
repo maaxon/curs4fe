@@ -44,7 +44,7 @@ const UpdateResume = () => {
         setError(null)
         try {
             e.preventDefault();
-            await axios.put(`${process.env.BACK_URL}/resume/${resumeId}`, {
+            await axios.put(`${import.meta.env.VITE_BACK_URL}/resume/${resumeId}`, {
                 title,
                 description,
                 salary,
