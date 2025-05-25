@@ -12,8 +12,7 @@ const resumeSchema = z.object({
     title: z.string().min(5, { message: "Minimum 5 characters" }).max(100),
     description: z.string().min(5, { message: "Minimum 5 characters" }).max(500),
     location: z.string().min(2, { message: "Minimum 2 characters" }).max(50),
-    salary: z.string()
-        .regex(/^\d+$/, { message: "Numbers only" })
+    salary: z.number().nonnegative()
 });
 
 const UpdatingResumeHeading = () => {
@@ -26,7 +25,7 @@ const UpdatingResumeHeading = () => {
             title,
             description,
             location,
-            salary: salary?.toString() || ""
+            salary: salary
         }
     });
 

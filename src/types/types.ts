@@ -5,8 +5,8 @@ type UserInfo = Omit<User, 'role'>;
 export interface Resume {
     title: string;
     description: string;
-    salary?: number | null;
-    location?: string | null;
+    salary: number;
+    location: string;
     user: UserInfo
 }
 
