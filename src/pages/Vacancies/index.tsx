@@ -25,7 +25,7 @@ export const VacanciesPage = () => {
 
                         <div className="col-xs-12">
                             <br/>
-                            {filteredVacancies && filteredVacancies.length > 0 ? <h5>We found vacancies</h5> :
+                            {filteredVacancies && filteredVacancies.length > 0 ? <h5>We found {filteredVacancies.length} vacancies</h5> :
                                 <h5>Cant found vacancies</h5>}
                         </div>
 
