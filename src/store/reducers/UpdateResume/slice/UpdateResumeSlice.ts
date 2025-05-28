@@ -2,6 +2,7 @@ import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {FullResumeWithIds} from "@type/types.ts";
 import {fetchUpdatingResume} from "../thunk/fetchUpdatingResume.ts";
 
+// @ts-ignore
 interface UpdatingResumeState extends FullResumeWithIds{
     image?: File | string
 }
