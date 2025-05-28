@@ -1,4 +1,3 @@
-import {Home} from "@pages/Home";
 import {Favorites} from "@pages/Favorites";
 import ManageResumes from "@pages/ManageResumes/ManageResumes.tsx";
 import {Resume} from "@pages/Resume/Resume.tsx";
@@ -52,7 +51,7 @@ export const employerRoutes = [
     {path: CREATE_VACANCY, component: CreateVacancy},
     {path: MANAGE_VACANCIES, component: ManageVacancies},
     {path: UPDATE_VACANCY, component: UpdateVacancy},
-    {path: HOME, component: Home},
+    {path: HOME, component: ManageVacancies},
     {path: RESUME, component: Resume},
     {path: VIEW_VACANCY, component: VacancyPage},
 ]

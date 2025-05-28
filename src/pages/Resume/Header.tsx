@@ -10,14 +10,14 @@ export const ResumePageHeader = () => {
 
     console.log(resume)
 
-    const {title,description,salary,location,user} = resume
+    const {title,description,salary,location,user, image} = resume
 
     return (
         <header className="page-header bg-img" style={{backgroundImage: "url(bg-banner1.jpg)"}}>
             <div className="container">
                 <div className="row">
                     <div className="col-xs-12 col-sm-4">
-                        <img src={avatar} height={250} style={{marginLeft:50}} alt=""/>
+                        <img src={image ? image : avatar} height={250} style={{marginLeft:50}} alt=""/>
                     </div>
 
                     <div className="col-xs-12 col-sm-8 header-detail">

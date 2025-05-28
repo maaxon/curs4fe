@@ -47,106 +47,111 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({ data, idx }) => {
     };
 
     return (
-        <div className="col-xs-8">
-            <div className="item-block">
-                <div className="item-form">
-                    {/* Сохраняем оригинальный стиль кнопки удаления */}
-                    <button onClick={removeCard} className="btn btn-danger btn-float btn-remove">
-                        <i className="fa fa-close"></i>
-                    </button>
+      <div className="col-xs-8">
+          <div className="item-block">
+              <div className="item-form">
+                  <button onClick={removeCard} className="btn btn-danger btn-float btn-remove">
+                      <i className="fa fa-close"></i>
+                  </button>
 
-                    <div className="row">
-                        <div className="col-xs-12 col-sm-12">
-                            <div className="form-group">
-                                <input
-                                    {...register("company")}
-                                    name="company"
-                                    value={company}
-                                    onChange={changeHandler}
-                                    type="text"
-                                    className="form-control"
-                                    style={errors.company ? errorStyle : {}}
-                                    placeholder="Company name"
-                                />
-                                {errors.company && (
-                                    <div className="text-danger small mt-1">
-                                        {errors.company.message}
-                                    </div>
-                                )}
-                            </div>
-
-                            <div className="form-group">
-                                <input
-                                    {...register("position")}
-                                    name="position"
-                                    value={position}
-                                    onChange={changeHandler}
-                                    type="text"
-                                    className="form-control"
-                                    style={errors.position ? errorStyle : {}}
-                                    placeholder="Position, e.g. UI/UX Researcher"
-                                />
-                                {errors.position && (
-                                    <div className="text-danger small mt-1">
-                                        {errors.position.message}
-                                    </div>
-                                )}
-                            </div>
-
-                            <div className="form-group">
-                                <div className="input-group">
-                                    <span className="input-group-addon">Date from</span>
-                                    <input
-                                        {...register("from_date")}
-                                        name="from_date"
-                                        value={from_date}
-                                        onChange={changeHandler}
-                                        type="date"
-                                        className="form-control"
-                                        style={errors.from_date ? errorStyle : {}}
-                                        placeholder="e.g. 2012"
-                                    />
-                                    <span className="input-group-addon">Date to</span>
-                                    <input
-                                        {...register("to_date")}
-                                        name="to_date"
-                                        value={to_date}
-                                        onChange={changeHandler}
-                                        type="date"
-                                        className="form-control"
-                                        style={errors.to_date ? errorStyle : {}}
-                                        placeholder="e.g. 2016"
-                                    />
+                  <div className="row">
+                      <div className="col-xs-12 col-sm-12">
+                          <div className="form-group">
+                              <label htmlFor={`company-${idx}`}>Company Name</label>
+                              <input
+                                {...register("company")}
+                                name="company"
+                                id={`company-${idx}`}
+                                value={company}
+                                onChange={changeHandler}
+                                type="text"
+                                className="form-control"
+                                style={errors.company ? errorStyle : {}}
+                                placeholder="Company name"
+                              />
+                              {errors.company && (
+                                <div className="text-danger small mt-1">
+                                    {errors.company.message}
                                 </div>
-                                {(errors.from_date || errors.to_date) && (
-                                    <div className="text-danger small mt-1">
-                                        {errors.from_date?.message || errors.to_date?.message}
-                                    </div>
-                                )}
-                            </div>
+                              )}
+                          </div>
 
-                            <div className="form-group">
-                <textarea
-                    {...register("description")}
-                    name="description"
-                    value={description}
-                    onChange={changeHandler}
-                    className="form-control"
-                    style={errors.description ? errorStyle : {}}
-                    rows={3}
-                    placeholder="Short description"
-                />
-                                {errors.description && (
-                                    <div className="text-danger small mt-1">
-                                        {errors.description.message}
-                                    </div>
-                                )}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                          <div className="form-group">
+                              <label htmlFor={`position-${idx}`}>Position</label>
+                              <input
+                                {...register("position")}
+                                name="position"
+                                id={`position-${idx}`}
+                                value={position}
+                                onChange={changeHandler}
+                                type="text"
+                                className="form-control"
+                                style={errors.position ? errorStyle : {}}
+                                placeholder="Position, e.g. UI/UX Researcher"
+                              />
+                              {errors.position && (
+                                <div className="text-danger small mt-1">
+                                    {errors.position.message}
+                                </div>
+                              )}
+                          </div>
+
+                          <div className="form-group">
+                              <div className="input-group">
+                                  <label htmlFor={`from_date-${idx}`} className="input-group-addon">From Date</label>
+                                  <input
+                                    {...register('from_date')}
+                                    name="from_date"
+                                    id={`from_date-${idx}`}
+                                    value={from_date}
+                                    onChange={changeHandler}
+                                    type="date"
+                                    className="form-control"
+                                    style={errors.from_date ? errorStyle : {}}
+                                  />
+                                  <label htmlFor={`to_date-${idx}`} className="input-group-addon">To Date</label>
+                                  <input
+                                    {...register('to_date')}
+                                    name="to_date"
+                                    id={`to_date-${idx}`}
+                                    value={to_date}
+                                    onChange={changeHandler}
+                                    type="date"
+                                    className="form-control"
+                                    style={errors.to_date ? errorStyle : {}}
+                                  />
+                              </div>
+                              {(errors.from_date || errors.to_date) && (
+                                <div className="text-danger small mt-1">
+                                    {errors.from_date?.message || errors.to_date?.message}
+                                </div>
+                              )}
+                          </div>
+
+                          <div className="form-group">
+                              <label htmlFor={`description-${idx}`}>Description</label>
+                              <textarea
+                                {...register("description")}
+                                name="description"
+                                id={`description-${idx}`}
+                                value={description}
+                                onChange={changeHandler}
+                                className="form-control"
+                                style={errors.description ? errorStyle : {}}
+                                rows={3}
+                                placeholder="Short description"
+                              />
+                              {errors.description && (
+                                <div className="text-danger small mt-1">
+                                    {errors.description.message}
+                                </div>
+                              )}
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
     );
 };
 

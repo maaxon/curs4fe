@@ -29,9 +29,6 @@ const EmployerHeader: React.FC = () => {
 
                     <ul className="nav-menu">
                         <li>
-                            <Link to="/vacancies">Home</Link>
-                        </li>
-                        <li>
                             <Link to={"/manage-vacancies"}>Vacancies</Link>
                         </li>
                         <li>

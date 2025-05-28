@@ -23,6 +23,14 @@ export const UpdateVacancySlice = createSlice({
             // @ts-ignore
             state.vacancy[payload.name] = payload.value;
         },
+        setUpdatingTag(state, { payload }: PayloadAction<{ checked: boolean, value: string }>) {
+
+            if (state.vacancy){
+                state.vacancy.tags = state.vacancy.tags = payload.checked ? [...state.vacancy.tags, payload.value]
+                  : state.vacancy.tags.filter(tag => tag !== payload.value);
+            }
+
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -43,6 +51,7 @@ export const UpdateVacancySlice = createSlice({
 
 export const {
     setUpdatingField,
+  setUpdatingTag
 } = UpdateVacancySlice.actions;
 
 export default UpdateVacancySlice.reducer;

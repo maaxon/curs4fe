@@ -9,6 +9,7 @@ const apiSlice = createApi({
     tagTypes:['GET_VACANCIES_BY_USER_ID','GET_ADMIN_RESUMES','GET_ADMIN_VACANCIES','GET_RATE','GET_USER_RESPONSES','GET_EMPLOYER_RESPONSES','GET_VACANCIES_BY_ID'],
     baseQuery,
     endpoints: () => ({}), // Изначально пустой объект
+    keepUnusedDataFor: 50,
 });
 
 // Экспортируйте сам apiSlice для использования в Store

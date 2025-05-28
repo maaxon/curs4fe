@@ -34,7 +34,8 @@ export const VacancyPage = () => {
         short_description,
         working_hours,
         user_id,
-        rating
+        rating,
+        tags
     } = vacancy;
 
     const onResponse = (resumeId?: number) => {
@@ -62,9 +63,9 @@ export const VacancyPage = () => {
                                 <h3>{company_name}</h3>
 
                             </div>
-                            <RatingStars rating={rating} owner_id={user_id}/>
+                            <RatingStars rating={rating} owner_id={user_id} />
                         </div>
-                        <hr/>
+                        <hr />
                         <p className="lead">{short_description}</p>
 
                         <ul className="details cols-3">
@@ -98,10 +99,15 @@ export const VacancyPage = () => {
                                 <span>{degree}</span>
                             </li>
                         </ul>
+                        <div className="tag-list">
+                            <h6>Avilablebilities</h6>
+                            {tags.map(tag => (<span>{tag.toUpperCase()}</span>))}
+                        </div>
                     </div>
                     <div className="button-group">
                         <div className="action-buttons">
-                            {user?.role === 'user' && <span className="btn btn-success" onClick={handleModalOpen}>Apply now</span>}
+                            {user?.role === 'user' &&
+                              <span className="btn btn-success" onClick={handleModalOpen}>Apply now</span>}
                         </div>
                     </div>
                 </div>

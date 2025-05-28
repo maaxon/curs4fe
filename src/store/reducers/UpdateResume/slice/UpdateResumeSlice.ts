@@ -2,14 +2,18 @@ import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {FullResumeWithIds} from "@type/types.ts";
 import {fetchUpdatingResume} from "../thunk/fetchUpdatingResume.ts";
 
+interface UpdatingResumeState extends FullResumeWithIds{
+    image?: File | string
+}
+
 type CreateResumeState = {
-    resume: FullResumeWithIds;
+    resume: UpdatingResumeState;
     loading: boolean;
     error?: string;
 };
 
 // @ts-ignore
-const  initialResume:FullResumeWithIds = {
+const  initialResume:UpdatingResumeState = {
     id: '',
     title:'',
     description:'',
@@ -56,6 +60,10 @@ export const UpdateResumeSlice = createSlice({
         setUpdatingField(state,{payload}:PayloadAction<{name:string,value:string}>){
             // @ts-ignore
             state.resume[payload.name] = payload.value
+        },
+
+        setImage(state,{payload}:PayloadAction<File>){
+            state.resume.image = payload;
         },
 
         setEducationUpdatingField(state,{payload}:PayloadAction<{idx:number,name:string,value:string}>){

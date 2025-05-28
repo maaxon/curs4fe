@@ -3,6 +3,7 @@ import {User} from "../store/reducers/User/types/types.ts";
 type UserInfo = Omit<User, 'role'>;
 
 export interface Resume {
+    image?: string,
     title: string;
     description: string;
     salary: number;
@@ -77,6 +78,7 @@ export interface Vacancy {
     degree: 'Postdoc' | 'Ph.D.' | 'Master' | 'Bachelor';
     working_hours: number;
     experience: number;
+    tags: string[]
 }
 
 export interface VacancyWithId extends Vacancy {

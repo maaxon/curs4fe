@@ -15,9 +15,10 @@ import {fetchUpdatingResume} from "../../store/reducers/UpdateResume/thunk/fetch
 import UpdatingResumeHeading from "@pages/UpdateResume/Header.tsx";
 import {ErrorMessage} from "@components/ErrorMessage";
 import {toast} from "sonner";
+import { uploadFile } from '@utils/firebase';
 
 const UpdateResume = () => {
-    const {title, location, salary, description, skills, experience, education} = useAppSelector(getUpdatingResumeData)
+    const {title, location, salary, description, skills, experience, education, image} = useAppSelector(getUpdatingResumeData)
     const user = useAppSelector(getUser)
     const {id: resumeId} = useParams<{ id: string }>();
     const dispatch = useAppDispatch();
@@ -44,7 +45,11 @@ const UpdateResume = () => {
         setError(null)
         try {
             e.preventDefault();
+
+            const imageUrl = image && image instanceof File ? await uploadFile('avatars',image) : image
+
             await axios.put(`${import.meta.env.VITE_BACK_URL}/resume/${resumeId}`, {
+                image: imageUrl,
                 title,
                 description,
                 salary,

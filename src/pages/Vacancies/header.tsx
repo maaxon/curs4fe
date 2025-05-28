@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import {useAppDispatch} from "@hooks/redux.ts";
 import {setForm} from "../../store/reducers/FilterForm/slice/FilterForm.ts";
+import { useState } from 'react';
 
 // Стили для ошибок
 const errorStyle = {
@@ -35,10 +36,12 @@ const defaultValues = {
     experience: 0,
     contract: "",
     hour_rate: 0,
-    degree: ""
+    degree: "",
+    tags:[]
 }
 
 export const Header = () => {
+    const [tags, setTags] = useState<string[]>([]);
     const dispatch = useAppDispatch()
     const {
         register,
@@ -51,14 +54,24 @@ export const Header = () => {
     });
 
     const onSubmit = (data: z.infer<typeof formSchema>) => {
-        dispatch(setForm(data))
+        dispatch(setForm({...data,tags}))
         toast.success("Фильтры применены успешно!");
     };
 
     const onReset = () => {
         reset();
+        setTags([])
         dispatch(setForm(defaultValues))
         toast.info("Фильтры сброшены");
+    };
+
+    const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const value = event.target.value;
+        setTags(prevTags =>
+          event.target.checked
+            ? [...prevTags, value]
+            : prevTags.filter(tag => tag !== value)
+        );
     };
 
     return (
@@ -75,15 +88,15 @@ export const Header = () => {
                         <div className="form-group col-xs-12 col-sm-4">
                             <h6>Key words</h6>
                             <input
-                                {...register("keyword")}
-                                className="form-control"
-                                style={errors.keyword ? errorStyle : {}}
-                                placeholder="Keyword: job title, skills, or company"
+                              {...register("keyword")}
+                              className="form-control"
+                              style={errors.keyword ? errorStyle : {}}
+                              placeholder="Keyword: job title, skills, or company"
                             />
                             {errors.keyword && (
-                                <div className="text-danger small mt-1">
-                                    {errors.keyword.message}
-                                </div>
+                              <div className="text-danger small mt-1">
+                                  {errors.keyword.message}
+                              </div>
                             )}
                         </div>
 
@@ -91,15 +104,15 @@ export const Header = () => {
                         <div className="form-group col-xs-12 col-sm-4">
                             <h6>Location</h6>
                             <input
-                                {...register("location")}
-                                className="form-control"
-                                style={errors.location ? errorStyle : {}}
-                                placeholder="Location: city, state or zip"
+                              {...register("location")}
+                              className="form-control"
+                              style={errors.location ? errorStyle : {}}
+                              placeholder="Location: city, state or zip"
                             />
                             {errors.location && (
-                                <div className="text-danger small mt-1">
-                                    {errors.location.message}
-                                </div>
+                              <div className="text-danger small mt-1">
+                                  {errors.location.message}
+                              </div>
                             )}
                         </div>
 
@@ -107,16 +120,16 @@ export const Header = () => {
                         <div className="form-group col-xs-12 col-sm-4">
                             <h6>Minimal experience</h6>
                             <input
-                                {...register("experience",{ valueAsNumber: true })}
-                                className="form-control"
-                                style={errors.experience ? errorStyle : {}}
-                                placeholder="Working hours"
-                                type="number"
+                              {...register("experience", { valueAsNumber: true })}
+                              className="form-control"
+                              style={errors.experience ? errorStyle : {}}
+                              placeholder="Working hours"
+                              type="number"
                             />
                             {errors.experience && (
-                                <div className="text-danger small mt-1">
-                                    {errors.experience.message}
-                                </div>
+                              <div className="text-danger small mt-1">
+                                  {errors.experience.message}
+                              </div>
                             )}
                         </div>
 
@@ -124,12 +137,12 @@ export const Header = () => {
                         <div className="form-group col-xs-12 col-sm-4">
                             <h6>Contract</h6>
                             <select
-                                {...register("contract")}
-                                className="form-select"
-                                style={{
-                                    ...selectStyle,
-                                    ...(errors.contract ? errorStyle : {})
-                                }}
+                              {...register("contract")}
+                              className="form-select"
+                              style={{
+                                  ...selectStyle,
+                                  ...(errors.contract ? errorStyle : {})
+                              }}
                             >
                                 <option value="">any</option>
                                 <option value="Full time">Full time</option>
@@ -144,17 +157,17 @@ export const Header = () => {
                         <div className="form-group col-xs-12 col-sm-4">
                             <h6>Hourly rate</h6>
                             <input
-                                type="number"
-                                min="0"
-                                {...register("hour_rate", { valueAsNumber: true })}
-                                className="form-control"
-                                style={errors.hour_rate ? errorStyle : {}}
-                                placeholder="Hourly rate"
+                              type="number"
+                              min="0"
+                              {...register("hour_rate", { valueAsNumber: true })}
+                              className="form-control"
+                              style={errors.hour_rate ? errorStyle : {}}
+                              placeholder="Hourly rate"
                             />
                             {errors.hour_rate && (
-                                <div className="text-danger small mt-1">
-                                    {errors.hour_rate.message}
-                                </div>
+                              <div className="text-danger small mt-1">
+                                  {errors.hour_rate.message}
+                              </div>
                             )}
                         </div>
 
@@ -162,12 +175,12 @@ export const Header = () => {
                         <div className="form-group col-xs-12 col-sm-4">
                             <h6>Academic degree</h6>
                             <select
-                                {...register("degree")}
-                                className="form-select"
-                                style={{
-                                    ...selectStyle,
-                                    ...(errors.degree ? errorStyle : {})
-                                }}
+                              {...register("degree")}
+                              className="form-select"
+                              style={{
+                                  ...selectStyle,
+                                  ...(errors.degree ? errorStyle : {})
+                              }}
                             >
                                 <option value="">any</option>
                                 <option value="Bachelor">Bachelor</option>
@@ -176,14 +189,52 @@ export const Header = () => {
                                 <option value="Master">Master</option>
                             </select>
                         </div>
+                        <div className="form-group col-xs-12">
+                            <h6>Available for</h6>
+                            <div className="checkall-group">
+                                <div className="checkbox col-xs-4">
+                                    <input
+                                      checked={tags.includes("available for people with disabilities")}
+                                      onChange={handleCheckboxChange}
+                                           type="checkbox" id="rate3" name="rate"
+                                           value="available for people with disabilities"
+                                    />
+                                    <label htmlFor="rate3">available for people with disabilities</label>
+                                </div>
+
+                                <div className="checkbox col-xs-4" style={{ marginTop: 10 }}>
+                                    <input
+                                      checked={tags.includes("available for retirees")}
+                                      onChange={handleCheckboxChange}
+                                           type="checkbox"
+                                           id="rate4"
+                                           name="rate"
+                                           value="available for retirees"
+                                           />
+                                    <label htmlFor="rate4">available for retirees</label>
+                                </div>
+
+                                <div className="checkbox col-xs-4" style={{ marginTop: 10 }}>
+                                    <input
+                                      checked={tags.includes("available for minors")}
+                                      onChange={handleCheckboxChange}
+                                           type="checkbox"
+                                           id="rate5"
+                                           name="rate"
+                                           value="available for minors"/>
+                                    <label htmlFor="rate5">available for minors</label>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
 
                     <div className="button-group">
                         <div className="action-buttons">
                             <button
-                                type="button"
-                                onClick={onReset}
-                                className="btn btn-secondary ms-2"
+                              type="button"
+                              onClick={onReset}
+                              className="btn btn-secondary ms-2"
                             >
                                 Reset
                             </button>

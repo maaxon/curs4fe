@@ -56,131 +56,147 @@ const ResumeHeading = () => {
     };
 
     return (
-        <header className="page-header">
-            <div className="container page-name">
-                <h1 className="text-center">Add your resume</h1>
-                <p className="lead text-center">Create your resume and put it online.</p>
-            </div>
+      <header className="page-header">
+          <div className="container page-name">
+              <h1 className="text-center">Add your resume</h1>
+              <p className="lead text-center">Create your resume and put it online.</p>
+          </div>
 
-            <div className="container">
-                <div className="row">
-                    <div className="col-xs-12 col-sm-4">
-                        <div className="mb-4 d-flex justify-content-center">
-                            <img
-                                style={{ width: "180px", height: "250px", objectFit: "contain" }}
-                                src={image ? URL.createObjectURL(image) : avatar}
-                                alt="Profile"
-                            />
+          <div className="container">
+              <div className="row">
+                  <div className="col-xs-12 col-sm-4">
+                      <div className="mb-4 d-flex justify-content-center">
+                          <img
+                            style={{ width: "250px", height: "340px", objectFit: "contain" }}
+                            src={image ? URL.createObjectURL(image) : avatar}
+                            alt="Profile"
+                          />
+                      </div>
+                      <div className="d-flex justify-content-center">
+                          <div className="btn btn-primary position-relative">
+                              <label className="form-label text-white m-1" htmlFor="customFile1">
+                                  Choose profile image
+                              </label>
+                              <input
+                                type="file"
+                                onChange={onImageChange}
+                                className="form-control position-absolute top-0 start-0 w-100 h-100 opacity-0"
+                                id="customFile1"
+                                accept="image/*"
+                              />
+                          </div>
+                      </div>
+                      {errors.image && (
+                        <div className="text-danger small text-center mt-2">
+                            {errors.image.message}
                         </div>
-                        <div className="d-flex justify-content-center">
-                            <div className="btn btn-primary position-relative">
-                                <label className="form-label text-white m-1" htmlFor="customFile1">
-                                    Choose profile image
-                                </label>
-                                <input
-                                    type="file"
-                                    onChange={onImageChange}
-                                    className="form-control position-absolute top-0 start-0 w-100 h-100 opacity-0"
-                                    id="customFile1"
-                                    accept="image/*"
-                                />
-                            </div>
-                        </div>
-                        {errors.image && (
-                            <div className="text-danger small text-center mt-2">
-                                {errors.image.message}
-                            </div>
-                        )}
-                    </div>
+                      )}
+                  </div>
 
-                    <div className="col-xs-12 col-sm-8">
-                        <div className="form-group">
-                            <input
-                                {...register("headline")}
-                                onChange={changeHandler}
-                                value={headline}
-                                name="headline"
-                                className="form-control"
-                                style={errors.headline ? errorStyle : {}}
-                                placeholder="Headline (e.g. Front-end developer)"
-                            />
-                            {errors.headline && (
+                  <div className="col-xs-12 col-sm-8">
+                      <div className="form-group">
+                          <label htmlFor="headline" className="form-label mb-1">
+                              Professional Headline
+                          </label>
+                          <input
+                            {...register("headline")}
+                            onChange={changeHandler}
+                            value={headline}
+                            name="headline"
+                            id="headline"
+                            className="form-control"
+                            style={errors.headline ? errorStyle : {}}
+                            placeholder="Front-end developer"
+                          />
+                          {errors.headline && (
+                            <div className="text-danger small mt-1">
+                                {errors.headline.message}
+                            </div>
+                          )}
+                      </div>
+
+                      <div className="form-group mt-3">
+                          <label htmlFor="description" className="form-label mb-1">
+                              About You
+                          </label>
+                          <textarea
+                            {...register("description")}
+                            onChange={changeHandler}
+                            value={description}
+                            name="description"
+                            id="description"
+                            className="form-control"
+                            rows={3}
+                            style={errors.description ? errorStyle : {}}
+                            placeholder="Brief description of your skills and experience"
+                          />
+                          {errors.description && (
+                            <div className="text-danger small mt-1">
+                                {errors.description.message}
+                            </div>
+                          )}
+                      </div>
+
+                      <br/>
+
+                      <h6>Basic information</h6>
+                      <div className="row">
+                          <div className="form-group col-xs-12 col-sm-6 mt-3">
+                              <label htmlFor="location" className="form-label mb-1">
+                                  Location
+                              </label>
+                              <div className="input-group input-group-sm">
+                                  <span className="input-group-addon"><i className="fa fa-map-marker"></i></span>
+                                  <input
+                                    {...register("location")}
+                                    onChange={changeHandler}
+                                    value={location}
+                                    name="location"
+                                    id="location"
+                                    type="text"
+                                    className="form-control"
+                                    style={errors.location ? errorStyle : {}}
+                                    placeholder="Melon Park, CA"
+                                  />
+                              </div>
+                              {errors.location && (
                                 <div className="text-danger small mt-1">
-                                    {errors.headline.message}
+                                    {errors.location.message}
                                 </div>
-                            )}
-                        </div>
+                              )}
+                          </div>
 
-                        <div className="form-group">
-              <textarea
-                  {...register("description")}
-                  onChange={changeHandler}
-                  value={description}
-                  name="description"
-                  className="form-control"
-                  rows={3}
-                  style={errors.description ? errorStyle : {}}
-                  placeholder="Short description about you"
-              />
-                            {errors.description && (
+                          <div className="form-group col-xs-12 col-sm-6 mt-3">
+                              <label htmlFor="salary" className="form-label mb-1">
+                                  Hourly Rate
+                              </label>
+                              <div className="input-group input-group-sm">
+                                  <span className="input-group-addon"><i className="fa fa-usd"></i></span>
+                                  <input
+                                    {...register("salary")}
+                                    onChange={changeHandler}
+                                    value={salary}
+                                    name="salary"
+                                    id="salary"
+                                    type="text"
+                                    className="form-control"
+                                    style={errors.salary ? errorStyle : {}}
+                                    placeholder="85"
+                                  />
+                                  <span className="input-group-addon">Per hour</span>
+                              </div>
+                              {errors.salary && (
                                 <div className="text-danger small mt-1">
-                                    {errors.description.message}
+                                    {errors.salary.message}
                                 </div>
-                            )}
-                        </div>
-
-                        <br/>
-
-                        <h6>Basic information</h6>
-                        <div className="row">
-                            <div className="form-group col-xs-12 col-sm-6">
-                                <div className="input-group input-group-sm">
-                                    <span className="input-group-addon"><i className="fa fa-map-marker"></i></span>
-                                    <input
-                                        {...register("location")}
-                                        onChange={changeHandler}
-                                        value={location}
-                                        name="location"
-                                        type="text"
-                                        className="form-control"
-                                        style={errors.location ? errorStyle : {}}
-                                        placeholder="Location, e.g. Melon Park, CA"
-                                    />
-                                </div>
-                                {errors.location && (
-                                    <div className="text-danger small mt-1">
-                                        {errors.location.message}
-                                    </div>
-                                )}
-                            </div>
-
-                            <div className="form-group col-xs-12 col-sm-6">
-                                <div className="input-group input-group-sm">
-                                    <span className="input-group-addon"><i className="fa fa-usd"></i></span>
-                                    <input
-                                        {...register("salary")}
-                                        onChange={changeHandler}
-                                        value={salary}
-                                        name="salary"
-                                        type="text"
-                                        className="form-control"
-                                        style={errors.salary ? errorStyle : {}}
-                                        placeholder="Salary, e.g. 85"
-                                    />
-                                    <span className="input-group-addon">Per hour</span>
-                                </div>
-                                {errors.salary && (
-                                    <div className="text-danger small mt-1">
-                                        {errors.salary.message}
-                                    </div>
-                                )}
-                            </div>
-                        </div>
-                        <hr className="hr-lg"/>
-                    </div>
-                </div>
-            </div>
-        </header>
+                              )}
+                          </div>
+                      </div>
+                      <hr className="hr-lg"/>
+                  </div>
+              </div>
+          </div>
+      </header>
     );
 };
 

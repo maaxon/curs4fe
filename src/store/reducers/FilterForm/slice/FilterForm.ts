@@ -6,7 +6,8 @@ export type FilterFormState = {
     experience:number,
     hour_rate:number,
     degree: string,
-    contract: string
+    contract: string,
+    tags: string[]
 };
 
 const  initialState:FilterFormState = {
@@ -15,7 +16,8 @@ const  initialState:FilterFormState = {
     experience:0,
     hour_rate:0,
     degree: "",
-    contract: ''
+    contract: '',
+    tags: []
 }
 
 export const FilterFormSlice = createSlice({

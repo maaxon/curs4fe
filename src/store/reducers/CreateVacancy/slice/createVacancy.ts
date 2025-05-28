@@ -12,6 +12,7 @@ const  initialState:Vacancy = {
     degree: 'Bachelor',
     experience: 0,
     working_hours: 0,
+    tags: []
 }
 
 export const CreateVacancySlice = createSlice({
@@ -24,13 +25,18 @@ export const CreateVacancySlice = createSlice({
         },
         clearFields(){
             return initialState;
+        },
+        setTags(state,{payload}:PayloadAction<{value:string, checked: boolean}>){
+            state.tags = payload.checked ? [...state.tags, payload.value]
+              : state.tags.filter(tag => tag !== payload.value)
         }
     }
 })
 
 export const {
     setField,
-    clearFields
+    clearFields,
+  setTags
 } = CreateVacancySlice.actions
 
 export default CreateVacancySlice.reducer

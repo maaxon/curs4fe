@@ -3,7 +3,7 @@ import 'react-quill/dist/quill.snow.css';
 import {Header} from "@pages/createVacancy/header.tsx";
 import {useAppDispatch, useAppSelector} from "@hooks/redux.ts";
 import {getVacancyData} from "../../store/reducers/CreateVacancy/selectors/getVacancyData.ts";
-import {setField} from "../../store/reducers/CreateVacancy/slice/createVacancy.ts";
+import { clearFields, setField } from '../../store/reducers/CreateVacancy/slice/createVacancy.ts';
 import React from "react";
 import axios from "axios";
 import {getUser} from "../../store/reducers/User/selectors/selector.ts";
@@ -35,7 +35,7 @@ export const CreateVacancy = () => {
             })
             setError(false);
             navigate('/')
-
+            dispatch(clearFields())
             toast.success("Vacancy created");
         } catch {
             setError(true)
