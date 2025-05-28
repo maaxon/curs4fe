@@ -98,7 +98,7 @@ export const RegisterPage = () => {
                                 <select name="role" value={role} onChange={selectChangeHandler}
                                         className="form-select w-75 form-select-lg" aria-label="Default select example">
                                     <option value="" selected>Select role</option>
-                                    <option value="user">User</option>
+                                    <option value="user">Employee</option>
                                     <option value="employer">Employer</option>
                                 </select>
                             </div>
