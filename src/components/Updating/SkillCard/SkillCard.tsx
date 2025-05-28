@@ -74,6 +74,7 @@ const UpdatingSkillCard: React.FC<SkillCardProps> = ({ id, data, idx }) => {
                         onClick={removeCard}
                         className="btn btn-danger btn-float btn-remove"
                         aria-label="Remove skill"
+                        type="button"
                     >
                         <i className="fa fa-close"></i>
                     </button>

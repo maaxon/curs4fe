@@ -25,6 +25,7 @@ const  initialState:CreateResumeState = {
     age:'',
     email:'',
     tags:[],
+    image: undefined,
     education:[
         {
             img:'',

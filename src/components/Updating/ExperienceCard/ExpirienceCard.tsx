@@ -75,6 +75,7 @@ const UpdatingExperienceCard: React.FC<ExperienceCardProps> = ({ id, data, idx }
                         onClick={removeCard}
                         className="btn btn-danger btn-float btn-remove"
                         aria-label="Remove experience"
+                        type="button"
                     >
                         <i className="fa fa-close"></i>
                     </button>

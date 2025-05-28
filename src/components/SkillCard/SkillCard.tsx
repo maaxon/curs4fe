@@ -53,7 +53,7 @@ const SkillCard: React.FC<SkillCardProps> = ({ data, idx }) => {
       <div className="col-xs-12">
           <div className="item-block">
               <div className="item-form">
-                  <button onClick={removeCard} className="btn btn-danger btn-float btn-remove">
+                  <button onClick={removeCard} className="btn btn-danger btn-float btn-remove" type="button">
                       <i className="fa fa-close"></i>
                   </button>
 

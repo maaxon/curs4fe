@@ -22,9 +22,9 @@ const vacancySchema = z.object({
       .min(2, { message: "Location must be at least 2 characters" })
       .max(50, { message: "Location cannot exceed 50 characters" }),
     job_type: z.string(),
-    salary: z.number().nonnegative({ message: "must be positive" }),
-    working_hours: z.number().nonnegative({ message: "must be positive" }),
-    experience: z.number().nonnegative({ message: "must be positive" }),
+    salary: z.number().min(1).nonnegative({ message: "must be positive" }),
+    working_hours: z.number().min(1).nonnegative({ message: "must be positive" }),
+    experience: z.number().min(1).nonnegative({ message: "must be positive" }),
     degree: z.string()
 });
 
@@ -179,7 +179,7 @@ export const Header = () => {
                             id="salary"
                             value={formData.salary}
                             onChange={onChange}
-                            type="text"
+                            type="number"
                             className="form-control"
                             style={errors.salary ? errorStyle : {}}
                             placeholder="Salary"

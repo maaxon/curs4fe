@@ -86,6 +86,7 @@ const UpdatingEducationCard: React.FC<EducationCardProps> = ({ id, data, idx }) 
                         onClick={removeCard}
                         className="btn btn-danger btn-float btn-remove"
                         aria-label="Remove education"
+                        type="button"
                     >
                         <i className="fa fa-close"></i>
                     </button>

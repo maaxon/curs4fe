@@ -24,9 +24,9 @@ const vacancySchema = z.object({
       .min(2, { message: "Location must be at least 2 characters" })
       .max(50, { message: "Location cannot exceed 50 characters" }),
     job_type: z.string(),
-    salary: z.number().nonnegative(),
-    working_hours: z.number().nonnegative(),
-    experience: z.number().nonnegative(),
+    salary: z.number().min(1).nonnegative(),
+    working_hours: z.number().min(1).nonnegative(),
+    experience: z.number().min(1).nonnegative(),
     degree: z.string()
 });
 
